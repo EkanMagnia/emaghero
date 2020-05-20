@@ -11,6 +11,11 @@
             "email": "george.olah@selgora.com"
         }
     ],
+    "autoload": {
+        "psr-4": {
+            "Hero\\": "src/"
+        }
+    },
     "minimum-stability": "dev",
     "require": {}
 }
