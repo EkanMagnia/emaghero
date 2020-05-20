@@ -6,7 +6,7 @@ class Output {
 		echo $text;
 		if ( php_sapi_name() == "cli" ) {
 			echo PHP_EOL;
-			sleep(1);
+//			sleep(1);
 		} else {
 			echo '<br/>';
 		}

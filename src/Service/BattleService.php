@@ -52,10 +52,12 @@ class BattleService {
 			$damage = $attackingForce->getStrength() - $defendingForce->getDefence();
 
 			if ($this->luckService->willHit($defendingForce->getLuck()) === FALSE) {
+				[ $attackingForce, $defendingForce ] = $this->switchPlayers( $attackingForce, $player, $badNPC );
 				Output::print($attackingForce.' attacks '.$defendingForce.', but without any luck he misses his target.');
 				continue;
 			}
 
+			//use defending skills
 			if ($defendingForce instanceof Player) {
 				$this->skillResolver->resolveDefenceSkills($this->luckService, $attackingForce, $defendingForce, $damage);
 			}
