@@ -7,37 +7,47 @@ use Hero\Entity\Interfaces\Character;
 use Hero\Entity\Player;
 use Hero\Helper\Output;
 use Hero\Service\Interfaces\FirstAttacker;
+use Hero\Service\Interfaces\Luck;
 
 class BattleService {
 
 	/** @var FirstAttacker */
 	protected $firstAttackerService;
 
+	/** @var Luck */
+	protected $luckService;
+
+	/** @var int  */
+	protected $maxTurns = 20;
+
 	/**
 	 * BattleService constructor.
 	 *
 	 * @param FirstAttacker $firstAttackerService
+	 * @param Luck   $luckService
+	 * @param int           $maxTurns
 	 */
-	public function __construct( FirstAttacker $firstAttackerService ) {
+	public function __construct( FirstAttacker $firstAttackerService, Luck $luckService, $maxTurns = 20 ) {
 		$this->firstAttackerService = $firstAttackerService;
+		$this->luckService = $luckService;
+		$this->maxTurns = $maxTurns;
 	}
 
-	public function attack( Player $player, BadNPC $badNPC ) {
+	public function attack( Player $player, BadNPC $badNPC ) : Character {
 		$turns = 0;
+		$winner = null;
 
 		$attackingForce = $this->firstAttackerService->getFirstAttacker( $player, $badNPC );
-		if ($attackingForce instanceof Player) {
-			$defendingForce = $badNPC;
-		} else {
-			$defendingForce = $player;
-		}
+		$defendingForce = $attackingForce instanceof Player ? $badNPC : $player;
 
 		Output::print( $attackingForce->getName() . ' will attack first because he has higher ' . $this->firstAttackerService->getReason() );
 
-		$winner = null;
-
-		while ($turns < 20) {
+		while ($turns < $this->maxTurns) {
 			$damage = $attackingForce->getStrength() - $defendingForce->getDefence();
+			if ($this->luckService->willHit($defendingForce->getLuck()) === FALSE) {
+				Output::print($attackingForce.' attacks '.$defendingForce.', but without any luck he misses his target.');
+				continue;
+			}
 			$health = $defendingForce->getHealth() - $damage;
 			$defendingForce->setHealth($health);
 
@@ -57,7 +67,11 @@ class BattleService {
 
 		if (!$winner instanceof Character) {
 			Output::print('Both fighters are tired and can not continue to fight. No one won this battle.');
+			$winner = $attackingForce->getHealth() > $defendingForce->getHealth() ? $attackingForce : $defendingForce;
+			Output::print($winner.' is a better shape, because he has more health left. ('.$winner->getHealth().' points left)');
 		}
+
+		return $winner;
 
 	}
 
@@ -71,7 +85,8 @@ class BattleService {
 		}
 
 		return [$attackingForce, $defendingForce];
-
 	}
+
+
 
 }
