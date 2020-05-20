@@ -6,6 +6,12 @@ namespace Hero\Entity;
 
 use Hero\Entity\Interfaces\Character;
 
+/**
+ * We can remove the abstract property if we want to use this class to define characters, or we can create a simple Character class that extends this one and we can insert automatically min and max attribute values.
+ * Class AbstractCharacter
+ * @package Hero\Entity
+ * @author  George Olah <hello@georgeolah.com>
+ */
 abstract class AbstractCharacter implements Character {
 
 	/**
