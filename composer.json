@@ -1,0 +1,16 @@
+{
+    "name": "emag/hero",
+    "description": "Answer to Emag's Hero test",
+    "type": "project",
+    "require-dev": {
+        "codeception/codeception": "^4.1"
+    },
+    "authors": [
+        {
+            "name": "George Olah",
+            "email": "george.olah@selgora.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
