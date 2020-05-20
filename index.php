@@ -6,6 +6,7 @@ use Hero\Entity\WildBeast;
 use Hero\Service\BattleService;
 use Hero\Service\FirstAttackerService;
 use Hero\Service\LuckService;
+use Hero\Service\Skill\SkillResolverService;
 
 ini_set( 'display_errors', 1 );
 ini_set( 'display_startup_errors', 1 );
@@ -25,6 +26,6 @@ Output::print( 'While sneaking through the elven woods of Emagia, under the tree
 Output::print( $wildBeast->toJson() );
 Output::print( 'The beast feels anger as a stranger treepasses her teritory and prepares to attack. ' );
 
-$battle = new BattleService( new FirstAttackerService(), new LuckService() );
+$battle = new BattleService( new FirstAttackerService(), new LuckService(), new SkillResolverService() );
 $battle->attack($player, $wildBeast);
 

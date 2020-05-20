@@ -17,5 +17,7 @@
         }
     },
     "minimum-stability": "dev",
-    "require": {}
+    "require": {
+        "haydenpierce/class-finder": "^0.4.2"
+    }
 }

@@ -8,6 +8,7 @@ use Hero\Entity\Player;
 use Hero\Helper\Output;
 use Hero\Service\Interfaces\FirstAttacker;
 use Hero\Service\Interfaces\Luck;
+use Hero\Service\Interfaces\SkillResolver;
 
 class BattleService {
 
@@ -17,6 +18,9 @@ class BattleService {
 	/** @var Luck */
 	protected $luckService;
 
+	/** @var SkillResolver */
+	protected $skillResolver;
+
 	/** @var int  */
 	protected $maxTurns = 20;
 
@@ -24,12 +28,14 @@ class BattleService {
 	 * BattleService constructor.
 	 *
 	 * @param FirstAttacker $firstAttackerService
-	 * @param Luck   $luckService
+	 * @param Luck          $luckService
+	 * @param SkillResolver $skillResolver
 	 * @param int           $maxTurns
 	 */
-	public function __construct( FirstAttacker $firstAttackerService, Luck $luckService, $maxTurns = 20 ) {
+	public function __construct( FirstAttacker $firstAttackerService, Luck $luckService, SkillResolver $skillResolver, $maxTurns = 20 ) {
 		$this->firstAttackerService = $firstAttackerService;
 		$this->luckService = $luckService;
+		$this->skillResolver = $skillResolver;
 		$this->maxTurns = $maxTurns;
 	}
 
@@ -44,10 +50,21 @@ class BattleService {
 
 		while ($turns < $this->maxTurns) {
 			$damage = $attackingForce->getStrength() - $defendingForce->getDefence();
+
 			if ($this->luckService->willHit($defendingForce->getLuck()) === FALSE) {
 				Output::print($attackingForce.' attacks '.$defendingForce.', but without any luck he misses his target.');
 				continue;
 			}
+
+			if ($defendingForce instanceof Player) {
+				$this->skillResolver->resolveDefenceSkills($this->luckService, $attackingForce, $defendingForce, $damage);
+			}
+
+			//use attacking skills
+			if ($attackingForce instanceof Player) {
+				$this->skillResolver->resolveAttackSkills($this->luckService, $attackingForce, $defendingForce, $damage);
+			}
+
 			$health = $defendingForce->getHealth() - $damage;
 			$defendingForce->setHealth($health);
 
