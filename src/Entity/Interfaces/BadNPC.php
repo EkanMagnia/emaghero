@@ -4,6 +4,6 @@
 namespace Hero\Entity\Interfaces;
 
 
-interface BadNPC {
+interface BadNPC extends Character {
 
 }

@@ -6,11 +6,12 @@ use Hero\Entity\Interfaces\BadNPC;
 use Hero\Entity\Interfaces\Character;
 use Hero\Entity\Player;
 use Hero\Helper\Output;
+use Hero\Service\Interfaces\Battle;
 use Hero\Service\Interfaces\FirstAttacker;
 use Hero\Service\Interfaces\Luck;
 use Hero\Service\Interfaces\SkillResolver;
 
-class BattleService {
+class BattleService implements Battle {
 
 	/** @var FirstAttacker */
 	protected $firstAttackerService;

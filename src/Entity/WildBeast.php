@@ -7,7 +7,7 @@ namespace Hero\Entity;
 use Hero\Entity\Interfaces\BadNPC;
 use Hero\Entity\Interfaces\Character;
 
-class WildBeast extends AbstractCharacter implements Character, BadNPC {
+class WildBeast extends AbstractCharacter implements BadNPC {
 	const MIN_HEALTH = 60, MAX_HEALTH = 90,
 		MIN_STRENGTH = 60, MAX_STRENGTH = 90,
 		MIN_DEFENCE = 40, MAX_DEFENCE = 60,
