@@ -3,25 +3,25 @@ Once upon a time there was a great hero, called Orderus, with some strengths and
 as all heroes have.
 After battling all kinds of monsters for more than a hundred years, Orderus now has the
 following stats:
-● Health: 70 - 100
-● Strength: 70 - 80
-● Defence: 45 – 55
-● Speed: 40 – 50
-● Luck: 10% - 30% (0% means no luck, 100% lucky all the time).
+* Health: 70 - 100
+* Strength: 70 - 80
+* Defence: 45 – 55
+* Speed: 40 – 50
+* Luck: 10% - 30% (0% means no luck, 100% lucky all the time).
 Also, he possesses 2 skills:
-● Rapid strike: Strike twice while it’s his turn to attack; there’s a 10% chance he’ll use this skill
+* Rapid strike: Strike twice while it’s his turn to attack; there’s a 10% chance he’ll use this skill
 every time he attacks
-● Magic shield: Takes only half of the usual damage when an enemy attacks; there’s a 20%
+* Magic shield: Takes only half of the usual damage when an enemy attacks; there’s a 20%
 change he’ll use this skill every time he defends.
 
 Gameplay
 As Orderus walks the ever-green forests of Emagia, he encounters some wild beasts, with the
 following properties:
-● Health: 60 - 90
-● Strength: 60 - 90
-● Defence: 40 – 60
-● Speed: 40 – 60
-● Luck: 25% - 40%
+* Health: 60 - 90
+* Strength: 60 - 90
+* Defence: 40 – 60
+* Speed: 40 – 60
+* Luck: 25% - 40%
 
 You’ll have to simulate a battle between Orderus and a wild beast, either at command line or
 using a web browser. On every battle, Orderus and the beast must be initialized with random
@@ -44,12 +44,12 @@ If we have a winner before the maximum number of rounds is reached, he must be d
 Rules
 Emagia is a land where magic does happen. Still, for this magic to work, you’ll have to follow these
 rules:
-● Write code in plain PHP, without any frameworks (you are free to use 3rd parties like
+* Write code in plain PHP, without any frameworks (you are free to use 3rd parties like
 PHPUnit, UI libs / frameworks)
-● Make sure your application is decoupled, code reusable and scalable. For example, can a
+* Make sure your application is decoupled, code reusable and scalable. For example, can a
 new skill easily be added to our hero?
-● Is your code bug-free and tested?
-● There’s no time limit, take your time for the best approach you can think of
+* Is your code bug-free and tested?
+* There’s no time limit, take your time for the best approach you can think of
 
 
 # Add new Skills
