@@ -1,4 +1,5 @@
-The story
+# The story
+
 Once upon a time there was a great hero, called Orderus, with some strengths and weaknesses,
 as all heroes have.
 After battling all kinds of monsters for more than a hundred years, Orderus now has the
@@ -14,7 +15,7 @@ every time he attacks
 * Magic shield: Takes only half of the usual damage when an enemy attacks; there’s a 20%
 change he’ll use this skill every time he defends.
 
-Gameplay
+## Gameplay
 As Orderus walks the ever-green forests of Emagia, he encounters some wild beasts, with the
 following properties:
 * Health: 60 - 90
@@ -52,7 +53,7 @@ new skill easily be added to our hero?
 * There’s no time limit, take your time for the best approach you can think of
 
 
-# Add new Skills
+## Add new Skills
 
 To add a new skill, follow these steps:
 1) Create a new class in src\Service\Skill\AttackSkills or DefenceSkills, depending on the type of skill you want to have.
